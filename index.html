@@ -8,14 +8,55 @@
   body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background:#0b0e13; color:#e8eaf0; margin:0; padding:48px 24px; }
   main { max-width:680px; margin:0 auto; }
   h1 { font-size:34px; margin:0 0 12px; }
+  h2 { font-size:26px; margin:40px 0 10px; }
   p { line-height:1.6; color:#b9bfce; }
   a { color:#ffd23f; }
+  section { border-top:1px solid #232936; margin-top:40px; padding-top:8px; }
+  ul { line-height:1.6; color:#b9bfce; padding-left:20px; }
+  li { margin-bottom:8px; }
+  .price { font-size:20px; color:#e8eaf0; }
+  .cta { display:inline-block; margin-top:12px; font-size:18px; font-weight:600; }
 </style>
 </head>
 <body>
 <main>
   <h1>ZeroHand Labs</h1>
   <p>We measure what automation and AI tools really cost, and publish the receipts. Find us on YouTube at @ZeroHandLabs.</p>
+
+  <section id="audit">
+    <h2>Your AI coding bill, judged.</h2>
+    <p>Not reported. Not dashboarded. Judged. ZeroHand merges every AI coding invoice your team pays into one verdict: what to keep, what to cap, what to kill, ranked in dollars, delivered in 48 hours.</p>
+
+    <p>Your October invoice did not match your budget, and nothing about your team's habits explains it. The explanation is mechanical: the vendors changed the billing model four times in five months (usage-based credits in June, promotional credits gone September 1, seat mechanics changed October 1, Cursor restructured October 12). The same usage that cost $39.07 under the old model priced at $902.72 under the new one. Each of your dashboards shows you a fragment of this, priced to make its own vendor look reasonable. None of them will ever tell you to cut seats, downgrade a tier, or move spend to a rival. Somebody still has to merge the bills and render a verdict.</p>
+
+    <p><strong>The 48-Hour AI Bill Verdict, in 48 hours:</strong></p>
+    <ul>
+      <li><strong>The Merged Bill</strong> ($1,200): every engineer x every tool x every model, identity-joined across vendors, repriced under the billing rules live when each charge was incurred.</li>
+      <li><strong>The Waste Ledger</strong> ($1,000): the spend that bought nothing, itemized and priced: duplicate seats, dead seats, wrong tiers, wrong-model defaults.</li>
+      <li><strong>The Ranked Fix Stack</strong> ($750): keep, cap, or kill per line, with projected savings, effort, and assumptions labeled.</li>
+      <li><strong>The Cap and Guardrail Pack</strong> ($500): finished cap settings, right-sized allowances, and overage alerts for your exact vendors, plus a verification checklist. Caps ship OFF by default.</li>
+      <li><strong>The Forecast</strong> ($500): next month and next quarter, at current pace and with the fixes applied. The number you hand finance.</li>
+      <li><strong>The Billing-Mechanics Brief</strong> ($350): what changed in your vendors' billing, priced against your own usage.</li>
+      <li><strong>The Walkthrough and Decision Call</strong> ($250): a recorded walkthrough of every finding, plus a live 30-minute call where fixes get owners.</li>
+      <li><strong>The Day-30 Recheck</strong> ($300): projected versus actual, drift flagged, in writing.</li>
+      <li><strong>BONUS: The Renewal Shield</strong> ($300): a one-page brief for your next vendor renewal, your measured usage versus the tier you are about to be sold.</li>
+      <li><strong>BONUS: The Team AI Budget Policy</strong> ($150): a paste-ready policy: model defaults by task, allowances, cap rules, exceptions.</li>
+    </ul>
+    <p>Total stack value: $5,300.</p>
+
+    <p>If all this did was catch the one engineer holding duplicate seats on two tools, it would pay for itself in a quarter. If all it did was arm the caps that ship turned off, it would pay for itself the first time a runaway session hit the ceiling instead of your invoice. If all it did was hand finance a forecast you did not have to build, it would pay for itself in your own hours this month. It does all three, in writing, in 48 hours.</p>
+
+    <p class="price">Price: $500, flat, once. Not $5,300. Not 20% of savings, which is what FinOps firms charge. Not $2,500 a month, which is where SaaS spend platforms start. Five hundred dollars, and the guarantee below means the risk sits with us.</p>
+
+    <p><strong>The guarantee.</strong> Find $5,000 or it is free: if your team spends $2,500 or more a month on AI coding tools, we guarantee this audit identifies at least $5,000 in annualized, fixable waste, projected from your measured baseline with assumptions stated in the report, or you pay nothing at all. Every audit, any size: at least $500 in projected annual savings identified, or a full refund. You keep everything either way: the Merged Bill, the Waste Ledger, the configured caps, the forecast, yours, refund or not. Late is free: if we miss the 48-hour delivery window for any reason on our side, the audit costs you nothing, whatever it finds. And the day-30 clause: apply the top three fixes within 30 days, and if your measured spend is not tracking toward the projected savings at the free recheck, we re-run the analysis free and find the gap with you.</p>
+
+    <p><strong>How it works.</strong> Five-minute intake (you will compute your own rough exposure on the way in). Data your way: read-only dashboard access or uploaded exports, billing data only, never code. The clock starts at a complete handoff. Report, walkthrough, and decision call inside 48 hours. Day-30 recheck in writing.</p>
+
+    <p><strong>Timing.</strong> October 2026 invoices are the first unsubsidized read of your team's real consumption. Renewal dates and budget season are set from whatever numbers exist when they arrive. Audits run in start order; this week's remaining starts are shown at checkout.</p>
+
+    <p><a class="cta" href="https://kamsi64.gumroad.com/l/ai-coding-spend-audit">Get the Verdict, $500</a></p>
+  </section>
+
   <p><a href="/privacy-policy/">Privacy Policy</a></p>
 </main>
 </body>
