@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missed-Call Cost Calculator - ZeroHand Labs</title>
+<link rel="canonical" href="https://zerohandlabs.com/missed-call-calculator/">
+<meta name="description" content="Free calculator for home-service shops: what missed calls cost you per month, priced from your own call volume, job value, and close rate.">
+<!--
+  Move 3 compounding-spine asset: free missed-call cost calculator for
+  home-service contractors (third free calculator for zerohandlabs.com).
+
+  SOURCED DEFAULTS (every one is an editable input on the page):
+  - Share of callers who never call back, 85%: NextPhone 2026 analysis of
+    130,175 inbound calls across 45 contractors. Vendor data, directional,
+    sample size real. Via 8calmedia.com / getnextphone.com summary, logged
+    in ZeroHand research notes 2026-10-17.
+  - About 74% of contractor calls go unanswered (same NextPhone analysis).
+    Shown as context text only; the calculator takes missed calls directly.
+  - Worked-example cross-check: 84 missed calls/month x $450 average ticket
+    x 50% close rate x 85% never-call-back = $16,065/month lost, which is
+    about $191 of lost value per missed call (the plumbing figure cited in
+    ZeroHand demand research, Oct 2026; the HVAC mix figure cited there is
+    about $459 per missed call at higher ticket values).
+  - Recovery share default 15%: the conservative scenario used in the same
+    worked example. It is an assumption, not a promise, and is labeled so.
+
+  No input data leaves the browser. CTA target set Oct 19, 2026 to the live
+  lead-response page (https://zerohandlabs.com/lead-response/), replacing
+  the draft placeholder.
+-->
+<style>
+  :root { --ink:#14181d; --muted:#5b6672; --line:#d9dee5; --accent:#0b6e4f; --warn:#b3540a; --bg:#f6f7f9; --card:#ffffff; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color:var(--ink); background:var(--bg); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 28px 18px 48px; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  .sub { color: var(--muted); margin: 0 0 22px; line-height: 1.5; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+  .card h2 { font-size: 16px; margin: 0 0 12px; }
+  label { display:block; font-size: 13px; font-weight: 600; margin: 12px 0 5px; }
+  label:first-of-type { margin-top: 0; }
+  input, select { width: 100%; padding: 9px 10px; font-size: 15px; border: 1px solid var(--line); border-radius: 6px; background:#fff; color:var(--ink); }
+  .row { display: flex; gap: 12px; }
+  .row > div { flex: 1; }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1.45; }
+  .results { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat { border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+  .stat .k { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .stat .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+  .stat .n { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.45; }
+  .big { border-color: var(--accent); }
+  .loss { border-color: var(--warn); }
+  .formula { font-size: 13px; background: #eef4f1; border-radius: 6px; padding: 10px 12px; line-height: 1.55; }
+  .cta { font-size: 14px; line-height: 1.55; }
+  .cta a { color: var(--accent); font-weight: 700; }
+  .foot { font-size: 12px; color: var(--muted); line-height: 1.55; margin-top: 18px; }
+  @media (max-width: 560px) { .results { grid-template-columns: 1fr; } .row { flex-direction: column; gap: 0; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>What are missed calls costing your shop?</h1>
+  <p class="sub">Enter your own numbers. Every default below is labeled with where it came from, and every field is editable, because your call log beats any industry average. A 2026 analysis of 130,175 real contractor calls (NextPhone) found about 74% of calls to contractors go unanswered. This calculator prices the ones you miss.</p>
+
+  <div class="card">
+    <h2>1. Your call volume</h2>
+    <label for="missedWeek">Missed calls per week (unanswered, busy, or straight to voicemail)</label>
+    <input id="missedWeek" type="number" min="0" step="1" value="21">
+    <p class="hint">Not sure? Check your phone system's call log for the last 4 weeks and count the ones nobody picked up, including after-hours. The default of 21 a week (91 a month) is a starting point in the range of the worked example in our research notes, not an average for your shop.</p>
+
+    <div class="row">
+      <div>
+        <label for="jobValue">Average job value ($)</label>
+        <input id="jobValue" type="number" min="0" step="1" value="450">
+        <p class="hint">Your average ticket for a booked job. Replace it with your own number from your invoicing.</p>
+      </div>
+      <div>
+        <label for="closeRate">Close rate on answered calls (%)</label>
+        <input id="closeRate" type="number" min="0" max="100" step="1" value="50">
+        <p class="hint">Of the callers you do talk to, what share book a job? 50% is the worked-example assumption. If you do not track it, 30 to 40% is a safer guess for cold inbound calls.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. The part most shops miss</h2>
+    <label for="neverBack">Callers who never call back after voicemail (%)</label>
+    <input id="neverBack" type="number" min="0" max="100" step="1" value="85">
+    <p class="hint">Industry default: 85%. Source: NextPhone 2026 analysis of 130,175 contractor calls, which found about 85% of callers who reach voicemail never call back. They call the next shop on the list instead. Lower it if your customers are mostly repeat clients who will try again.</p>
+
+    <label for="recover">Share of that lost work a fast text-back could recover (%)</label>
+    <input id="recover" type="number" min="0" max="100" step="1" value="15">
+    <p class="hint">Deliberately conservative. 15% assumes most missed callers still go elsewhere and only a slice come back when they get an instant text. It is a planning assumption, not a promise.</p>
+    <p class="formula">The math: <strong>monthly revenue lost = missed calls per month x average job value x close rate x share who never call back</strong>. No hidden steps; change any input and the result changes with it.</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Your numbers</h2>
+    <div class="results">
+      <div class="stat"><div class="k">Missed calls / month</div><div class="v" id="rMissed">0</div><div class="n">Weekly missed calls x 52 / 12.</div></div>
+      <div class="stat"><div class="k">Lost value per missed call</div><div class="v" id="rPerCall">$0</div><div class="n" id="rPerCallN"></div></div>
+      <div class="stat loss"><div class="k">Estimated revenue lost / month</div><div class="v" id="rLost">$0</div><div class="n">Booked jobs that never happened because nobody answered and the caller never tried again.</div></div>
+      <div class="stat"><div class="k">Estimated revenue lost / year</div><div class="v" id="rLostYear">$0</div><div class="n">Monthly figure x 12, at the same call volume.</div></div>
+      <div class="stat big"><div class="k">Worth recovering at your recovery share</div><div class="v" id="rRecover">$0</div><div class="n" id="rRecoverN"></div></div>
+      <div class="stat"><div class="k">Recovery value / year</div><div class="v" id="rRecoverYear">$0</div><div class="n">The monthly recovery figure x 12.</div></div>
+    </div>
+  </div>
+
+  <div class="card cta">
+    <strong>The fix is not a bigger ad budget. It is answering in seconds.</strong> ZeroHand's lead-response service watches your calls and forms around the clock: a missed call gets a text back in under 60 seconds, the conversation qualifies the job, and booked work lands on your calendar. Your current software stays exactly where it is. <a href="https://zerohandlabs.com/lead-response/">See how the lead-response service works</a>
+  </div>
+
+  <p class="foot">Sources for the labeled defaults: NextPhone 2026 analysis of 130,175 inbound calls across 45 contractors (about 74% of contractor calls unanswered; about 85% of voicemail callers never call back), summarized at 8calmedia.com and getnextphone.com. Worked-example cross-check from ZeroHand research, October 2026: at 84 missed calls a month, a $450 average ticket, a 50% close rate, and 85% never calling back, the loss is $16,065 a month, about $191 per missed call; at HVAC ticket values the same math gives about $459 per missed call. Vendor call data is directional, and your own call log and invoicing always win over any default on this page. This calculator runs entirely in your browser; nothing you type is sent anywhere. An anonymous counter records that a session ran; it receives no inputs and stores nothing about you.</p>
+</div>
+
+<script>
+  function $(id) { return document.getElementById(id); }
+  function num(id) { var v = parseFloat($(id).value); return isNaN(v) || v < 0 ? 0 : v; }
+  function pct(id) { var v = num(id); return v > 100 ? 1 : v / 100; }
+  function money(v) {
+    return "$" + Math.round(v).toLocaleString("en-US");
+  }
+
+  function calc() {
+    var missedWeek = num("missedWeek");
+    var jobValue = num("jobValue");
+    var closeRate = pct("closeRate");
+    var neverBack = pct("neverBack");
+    var recover = pct("recover");
+
+    var missedMonth = missedWeek * 52 / 12;
+    var perCall = jobValue * closeRate * neverBack;
+    var lost = missedMonth * perCall;
+    var lostYear = lost * 12;
+    var recoverVal = lost * recover;
+    var recoverYear = recoverVal * 12;
+
+    $("rMissed").textContent = Math.round(missedMonth).toLocaleString("en-US");
+    $("rPerCall").textContent = money(perCall);
+    $("rPerCallN").textContent = "Job value x close rate x never-call-back share, per missed call.";
+    $("rLost").textContent = money(lost);
+    $("rLostYear").textContent = money(lostYear);
+    $("rRecover").textContent = money(recoverVal);
+    $("rRecoverN").textContent = "At a " + Math.round(recover * 100) + "% recovery share of the monthly loss. Conservative on purpose.";
+    $("rRecoverYear").textContent = money(recoverYear);
+  }
+
+  (function init() {
+    var ids = ["missedWeek", "jobValue", "closeRate", "neverBack", "recover"], i;
+    for (i = 0; i < ids.length; i++) { $(ids[i]).addEventListener("input", calc); }
+    calc();
+  })();
+</script>
+<script>
+  // Anonymous session counter (sprint measurement, added Oct 19, 2026):
+  // fires once per browser session, on the first real input. Sends no
+  // values; it only counts that an engaged session happened.
+  (function () {
+    var KEY = "missed-call-calc-sessions", FLAG = "zhCounted_" + KEY;
+    try { if (sessionStorage.getItem(FLAG)) return; } catch (e) { return; }
+    function fire() {
+      try { sessionStorage.setItem(FLAG, "1"); } catch (e) {}
+      try { fetch("https://abacus.jasoncameron.dev/hit/zerohandlabs/" + KEY, { keepalive: true, mode: "no-cors" }).catch(function () {}); } catch (e) {}
+    }
+    document.addEventListener("input", fire, { once: true });
+    document.addEventListener("change", fire, { once: true });
+  })();
+</script>
+</body>
+</html>
