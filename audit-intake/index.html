@@ -28,7 +28,7 @@
 <main>
   <h1>AI Coding Spend Audit: Intake</h1>
   <p class="date">About 5 minutes. 12 questions, most are checkboxes.</p>
-  <p>This intake collects everything needed to start your 48-hour teardown, once. Your delivery clock starts when the data handoff in Section 3 is complete. Submitting opens your email app with your answers addressed to <a href="mailto:sam@getzerohandlabs.com">sam@getzerohandlabs.com</a>; if that does not work, use the Copy answers button and paste them into any email to that address.</p>
+  <p>This intake collects everything needed to start your 48-hour teardown, once. Your delivery clock starts when the data handoff in Section 3 is complete. Submitting opens your email app with your answers addressed to <a href="mailto:hello@zerohandlabs.com">hello@zerohandlabs.com</a>; if that does not work, use the Copy answers button and paste them into any email to that address.</p>
 
   <form id="intake">
     <h2>Section 1: Who and where</h2>
@@ -82,8 +82,8 @@
     <h2>Section 3: Data handoff (starts the 48-hour clock)</h2>
     <fieldset>
       <legend>8. How do you want to hand over the usage data?</legend>
-      <label class="opt"><input type="radio" name="Handoff method" value="Read-only dashboard access"> Read-only dashboard access: I will invite sam@getzerohandlabs.com</label>
-      <label class="opt"><input type="radio" name="Handoff method" value="Exports by email"> Exports: I will email CSV or report exports plus recent invoices to sam@getzerohandlabs.com</label>
+      <label class="opt"><input type="radio" name="Handoff method" value="Read-only dashboard access"> Read-only dashboard access: Send me the address to invite</label>
+      <label class="opt"><input type="radio" name="Handoff method" value="Exports by email"> Exports: I will email CSV or report exports plus recent invoices to hello@zerohandlabs.com</label>
       <label class="opt"><input type="radio" name="Handoff method" value="Mix of dashboards and exports"> Mix: dashboards for some tools, exports for others</label>
       <p>9. For exports, attach the last 30 days of usage exports and the two most recent invoices per tool to your submission email, if handy. Thirty days gives us your most recent 7 full days plus context.</p>
       <label for="q10">10. Anything already on fire? (optional) A blowup bill, a renewal deadline, a seat expansion decision, a finance question you need answered. One or two sentences is plenty.</label>
@@ -94,7 +94,7 @@
     <fieldset>
       <legend>11. Confidentiality</legend>
       <label class="opt"><input type="radio" name="Confidentiality" value="Standard handling is fine"> Standard handling is fine (data used only for this audit, deleted 30 days after delivery)</label>
-      <label class="opt"><input type="radio" name="Confidentiality" value="NDA needed before handoff"> I need an NDA signed before data handoff (we send ours, or send us yours at sam@getzerohandlabs.com)</label>
+      <label class="opt"><input type="radio" name="Confidentiality" value="NDA needed before handoff"> I need an NDA signed before data handoff (we send ours, or send us yours at hello@zerohandlabs.com)</label>
       <label for="q12">12. Anything else we should know? (optional) Default models your team runs, policies already in place, caps already set. Skip if none.</label>
       <textarea id="q12" name="Anything else"></textarea>
     </fieldset>
@@ -134,12 +134,12 @@ document.getElementById('intake').addEventListener('submit', function(e) {
   var body = collect();
   var company = document.getElementById('q3').value.trim();
   var subject = 'AI Coding Spend Audit intake' + (company ? ' — ' + company : '');
-  window.location.href = 'mailto:sam@getzerohandlabs.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  window.location.href = 'mailto:hello@zerohandlabs.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 });
 document.getElementById('copyBtn').addEventListener('click', function() {
   var t = collect();
   if (navigator.clipboard) { navigator.clipboard.writeText(t); }
-  alert('Answers copied. Paste them into an email to sam@getzerohandlabs.com and attach any exports there.');
+  alert('Answers copied. Paste them into an email to hello@zerohandlabs.com and attach any exports there.');
 });
 </script>
 </main>
