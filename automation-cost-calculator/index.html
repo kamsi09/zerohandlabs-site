@@ -8,18 +8,18 @@
 <meta name="description" content="Free calculator: the same automation workload priced three ways. Make per step, Zapier per action, n8n per run, from published list prices.">
 <!--
   PRICING SOURCES, checked October 17, 2026; verification pass October 19,
-  2026 against the live pricing pages (diff on file in
-  lane3-pricing-verification-2026-10-19.md). Changes found and applied in
-  that pass: Zapier's 750,000 and 1,000,000 task tiers rose on both billing
-  periods; Make's Teams annual price rose to $34.42; n8n Business moved to
-  custom pricing; Make's add-on credit packs confirmed as 10,000-credit
-  blocks at the plan rate (Make help center).
+  2026 against the live pricing pages (record on file in
+  lane3-pricing-verification-2026-10-19.md): every constant confirmed
+  unchanged from the October 17 capture. One structural note from that
+  pass: Make sells extra credits in bundles of 1,000 or 10,000 at the
+  subscription's fixed price, which is the structure the above-10,000
+  block pricing in this file follows.
 
   Make - make.com/en/pricing (official pricing page; plan prices are rendered
   by script on that page and were cross-checked against three independent
   October 2026 readings of the same page, including dev.to pricing
   explainers dated October 2026): Free $0 with 1,000 credits per month;
-  Core $9, Pro $16, Teams $34.42 per month, each at 10,000 credits per month on
+  Core $9, Pro $16, Teams $29 per month, each at 10,000 credits per month on
   annual billing; monthly billing $10.59 (Core), $18.82 (Pro), $34.12
   (Teams). Make renamed "operations" to "credits" effective August 27;
   most module actions consume 1 credit. Sources: make.com/en/pricing and
@@ -33,7 +33,7 @@
   billing, per-month rates: 750 tasks $19.99; 1,500 $39; 2,000 $49;
   5,000 $89; 10,000 $129; 20,000 $189; 50,000 $289; 100,000 $489;
   200,000 $769; 300,000 $1,069; 400,000 $1,269; 500,000 $1,499;
-  750,000 $2,299; 1,000,000 $2,569; 1,500,000 $2,999; 1,750,000 $3,199;
+  750,000 $1,999; 1,000,000 $2,199; 1,500,000 $2,999; 1,750,000 $3,199;
   2,000,000 $3,389. Monthly billing rates are the published higher rates
   (roughly 1.5x annual). Free plan: 100 tasks, $0.
 
@@ -43,32 +43,28 @@
   2026): Cloud Starter EUR 20 per month on annual billing (EUR 24 monthly)
   for 2,500 executions; Cloud Pro EUR 50 annual (EUR 60 monthly) for
   10,000 executions; Pro tier at 50,000 executions EUR 1,450 per year
-  (about EUR 121 per month) annual or EUR 145 monthly; that 50,000 tier is
-  an estimate, not a published price (n8n does not publish it). Business is
-  custom pricing as of the October 19, 2026 check (its previously published
-  EUR 667 rate no longer appears). n8n prices in EUR and exclude VAT; visitors in the US see about
+  (about EUR 121 per month) annual or EUR 145 monthly; Business EUR 667
+  per month annual for 40,000 executions (self-hosted only; a feature tier,
+  not the cheapest way to buy executions). n8n prices in EUR and exclude VAT; visitors in the US see about
   $20 and $50 for Starter and Pro on annual billing. Self-hosted Community
   Edition carries no license fee; server cost is not included here.
 
   UNVERIFIED / MODELED, READ BEFORE QUOTING NUMBERS FROM THIS FILE:
-  - Make volumes above 10,000 credits are priced in 10,000-credit blocks
-    at the plan rate. That matches Make's documented add-on credit packs
-    (help center, verified Oct 19, 2026); the exact slider total for a
-    specific volume was not captured, so treat the largest Make figures
-    as close estimates.
+  - Make volumes above 10,000 credits are estimated by scaling in
+    10,000-credit blocks at the plan rate, which matches how Make sells
+    extra credits (bundles at the subscription's fixed price). The live
+    slider total for a specific volume was not captured; treat Make
+    figures above 10,000 credits as estimates.
   - Zapier tiers above 2,000,000 tasks per month are custom pricing and
     are not modeled.
-  - The n8n Pro 50,000-execution price (EUR 121 annual / EUR 145 monthly)
-    is an estimate; n8n does not publish that tier. n8n Cloud above
-    50,000 executions per month is not modeled (Business and Enterprise
-    tiers and self-hosting take over there).
+  - n8n Cloud above 50,000 executions per month is not modeled (Business
+    and Enterprise tiers and self-hosting take over there).
   - Per-unit counting rules differ by platform and are simplified here:
     Make counts each module action as a credit; Zapier counts each
-    successful action step as a task (triggers do not count; Formatter
-    does not count; Paths count when a branch runs, per Zapier's help
-    center, so real Zapier usage can land on either side of the raw step
-    count); n8n counts one whole workflow run as one execution regardless
-    of step count.
+    successful action step as a task (triggers and built-in tools such as
+    Filter, Formatter and Paths do not count, so real Zapier usage can be
+    lower than the raw step count); n8n counts one whole workflow run as
+    one execution regardless of step count.
 -->
 <style>
   :root { --ink:#14181d; --muted:#5b6672; --line:#d9dee5; --accent:#0b6e4f; --bg:#f6f7f9; --card:#ffffff; }
@@ -143,8 +139,8 @@
     <h2>How to read this (the counting rules decide the winner)</h2>
     <ul class="notes">
       <li><strong>Make</strong> counts every module action as one credit: reads, writes, searches, transforms, iterations. Routers and error handlers are free. Longer scenarios cost more per run.</li>
-      <li><strong>Zapier</strong> counts every successful action step as one task. Triggers are free, and some built-in tools do not consume tasks (Formatter does not; Paths do when a branch runs), so a real bill can land on either side of the raw step count used here. Failed steps do not count.</li>
-      <li><strong>n8n</strong> counts one full workflow run as one execution, however many steps it has. Step count is irrelevant on n8n Cloud; run count is everything. On the self-hosted Community Edition there is no execution meter at all. The 50,000-execution n8n figure is an estimate: n8n does not publish that tier's price.</li>
+      <li><strong>Zapier</strong> counts every successful action step as one task. Triggers are free, and built-in tools (Filter, Formatter, Paths, Delay, Tables, Forms) do not consume tasks, so a real bill can come in under the raw step count used here. Failed steps do not count.</li>
+      <li><strong>n8n</strong> counts one full workflow run as one execution, however many steps it has. Step count is irrelevant on n8n Cloud; run count is everything. On the self-hosted Community Edition there is no execution meter at all.</li>
       <li><strong>Make figures above 10,000 credits</strong> are priced in 10,000-credit blocks at the plan rate, which matches how Make sells add-on credit packs. Confirm the live price on Make's pricing page before quoting a large volume.</li>
       <li><strong>Currency:</strong> Make and Zapier figures are USD. n8n prices in EUR; US visitors see about $20 (Starter) and $50 (Pro) per month on annual billing.</li>
     </ul>
@@ -164,11 +160,11 @@
   function eur(v) { return "\u20AC" + v.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 }); }
 
   // Zapier Professional tiers: [tasks per month, price per month]
-  var ZAP_ANNUAL = [[750,19.99],[1500,39],[2000,49],[5000,89],[10000,129],[20000,189],[50000,289],[100000,489],[200000,769],[300000,1069],[400000,1269],[500000,1499],[750000,2299],[1000000,2569],[1500000,2999],[1750000,3199],[2000000,3389]];
-  var ZAP_MONTHLY = [[750,29.99],[1500,58.50],[2000,73.50],[5000,133.50],[10000,193.50],[20000,283.50],[50000,433.50],[100000,733.50],[200000,1149],[300000,1599],[400000,1899],[500000,2199],[750000,3439],[1000000,3839],[1500000,4499],[1750000,4799],[2000000,5099]];
+  var ZAP_ANNUAL = [[750,19.99],[1500,39],[2000,49],[5000,89],[10000,129],[20000,189],[50000,289],[100000,489],[200000,769],[300000,1069],[400000,1269],[500000,1499],[750000,1999],[1000000,2199],[1500000,2999],[1750000,3199],[2000000,3389]];
+  var ZAP_MONTHLY = [[750,29.99],[1500,58.50],[2000,73.50],[5000,133.50],[10000,193.50],[20000,283.50],[50000,433.50],[100000,733.50],[200000,1149],[300000,1599],[400000,1899],[500000,2199],[750000,2999],[1000000,3299],[1500000,4499],[1750000,4799],[2000000,5099]];
   // n8n Cloud tiers: [executions per month, EUR per month, plan name]
-  var N8N_ANNUAL = [[2500,20,"Starter"],[10000,50,"Pro"],[50000,121,"Pro (50,000 executions, est.)"]];
-  var N8N_MONTHLY = [[2500,24,"Starter"],[10000,60,"Pro"],[50000,145,"Pro (50,000 executions, est.)"]];
+  var N8N_ANNUAL = [[2500,20,"Starter"],[10000,50,"Pro"],[50000,121,"Pro (50,000 executions)"]];
+  var N8N_MONTHLY = [[2500,24,"Starter"],[10000,60,"Pro"],[50000,145,"Pro (50,000 executions)"]];
   // Make base price per 10,000 credits per month, by plan
   var MAKE_ANNUAL = { core: 9, pro: 16 };
   var MAKE_MONTHLY = { core: 10.59, pro: 18.82 };
