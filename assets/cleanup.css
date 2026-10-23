@@ -266,3 +266,5 @@ summary{-webkit-tap-highlight-color:transparent}
 @media (max-width: 740px) {
   .install-film { box-shadow: none; }
 }
+
+.film-front svg { flex: none; }
