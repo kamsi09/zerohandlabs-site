@@ -41,6 +41,20 @@
   }
 .contact-footer{display:flex;flex-wrap:wrap;align-items:center;gap:4px 22px;border-top:1px solid #cdd3dd;padding-top:20px;margin-top:28px;font-size:13px;line-height:1.6;color:#46536a}.contact-footer a{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere}.contact-footer span:first-child{width:100%}
 .cta a{min-height:48px;display:inline-flex;align-items:center;justify-content:center}
+
+/* Mobile spacing follows the storefront rhythm without changing desktop. */
+@media(max-width:860px){
+  .wrap{padding-top:48px;padding-bottom:64px}
+  h1{margin-bottom:16px}
+  .sub,.cta{font-size:1rem;line-height:1.65}
+  .cta a{display:flex;width:fit-content}
+  .sub{margin-bottom:32px}
+  .card{margin-bottom:32px;padding:24px 18px}
+  .card h2{margin-bottom:20px;line-height:1.35}
+  .hint{font-size:.875rem;line-height:1.6;margin-top:8px}
+  .formula{margin-top:24px;font-size:.875rem;line-height:1.6}
+  .foot{margin-top:32px;line-height:1.65}
+}
 </style>
 </head>
 <body>

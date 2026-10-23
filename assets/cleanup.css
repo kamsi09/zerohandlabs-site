@@ -205,3 +205,44 @@ summary{-webkit-tap-highlight-color:transparent}
 
 /* Keep the booking action easy to tap in editorial pages. */
 .policy-copy a[href*="calendar.google.com"]{display:inline-flex;align-items:center;min-height:44px}
+
+/* Mobile rhythm pass. Desktop rules above 860px remain unchanged. */
+@media(max-width:860px){
+  .site-header .nav-booking .response-commitment{display:none}
+  :is(.cleanup-home,.cleanup-lead,.booking-page,.privacy,.terms) .site-header .nav{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;row-gap:4px;height:auto;min-height:0;padding-block:12px}
+  .site-header .nav>.brand{grid-column:1;grid-row:1;width:auto;min-width:0;margin:0}
+  .site-header .nav>.nav-booking{grid-column:2;grid-row:1;min-width:0;max-width:none;margin:0;text-align:right}
+  .site-header .nav-booking .cta-pair{width:auto;align-items:flex-end;gap:0}
+  .site-header .nav-booking .nav-contact{font-size:12px;min-height:44px;gap:8px;white-space:nowrap}
+  .site-header .nav>.nav-links{grid-column:1/-1;grid-row:2;width:100%;margin:0;gap:0 20px}
+  .lab-header .nav>.nav-links{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;padding:0}
+  .lab-header .nav>.nav-links a{display:inline-flex;align-items:center;min-height:44px;padding-block:10px}
+  .cleanup-lead .site-header .menu-button{grid-column:2;grid-row:2;justify-self:end;margin:0}
+  .js .cleanup-lead .site-header .nav-links{top:100%}
+  .cleanup-home .lab-intro{padding-top:40px;padding-bottom:64px}
+  .cleanup-home .lab-intro h1{font-size:clamp(44px,7.2vw,64px);line-height:1.08}
+  .cleanup-home .intro-grid{grid-template-columns:1fr;gap:40px;margin-top:32px}
+  .cleanup-home .hero-subline{font-size:1.45rem;line-height:1.35}
+  .cleanup-home .intro-copy>.hero-audience{font-size:1rem;line-height:1.6;margin-top:24px}
+  .cleanup-home .intro-copy>.hero-audience+p{font-size:1rem;line-height:1.65;margin-top:12px}
+  .cleanup-home .hero-actions{margin-top:28px}
+  .cleanup-home main>section:not(.lab-intro),.cleanup-lead main>section:not(.lead-hero){padding-top:64px;padding-bottom:64px}
+  :is(.cleanup-home,.cleanup-lead) :is(.surface-list p,.verification-steps p,.system-line p,.sample-intro>p,.faq-items p,.contact-copy>p:not(.final-terms),.install-process-copy p,.install-audience,.print-caption p,.buyer-problem p,.operator-fit>div>p,.report-mapping dd){font-size:1rem;line-height:1.65}
+  .cleanup-lead .lead-hero{height:auto;min-height:0;max-height:none;padding-top:40px;padding-bottom:64px}
+  .cleanup-lead .lead-hero h1{font-size:clamp(44px,7.2vw,64px);line-height:1.08}
+  .cleanup-lead .lead-subline{max-width:none;font-size:1.0625rem;line-height:1.6;margin-top:32px}
+  .cleanup-lead .missed-card{position:relative;top:auto;right:auto;width:100%;max-width:none;margin-top:32px}
+  .cleanup-lead .hero-offer{grid-template-columns:1fr;gap:24px;margin-top:32px}
+  .cleanup-lead .hero-offer .pilot-actions{min-width:0;max-width:none;width:100%}
+  .cleanup-home .hero-actions .button,.cleanup-lead .hero-offer .button{width:100%;justify-content:space-between;min-height:50px}
+  .booking-page .diagnostic-intro,.privacy .policy-intro,.terms .policy-intro{padding-top:64px;padding-bottom:40px}
+  .booking-page .diagnostic-intro p,.booking-panel-head>div>p{font-size:1rem;line-height:1.65}
+  .booking-panel{padding-top:40px}
+  .policy-copy section{margin-top:48px}
+  .policy-copy p,.policy-copy li,.policy-copy dd{font-size:1rem;line-height:1.75}
+  :is(.cleanup-home,.cleanup-lead,.booking-page,.privacy,.terms) .footer{padding-top:48px;padding-bottom:32px}
+}
+@media(max-width:480px){
+  .cleanup-home .lab-intro h1{font-size:clamp(32px,9.5vw,44px)}
+  .cleanup-lead .lead-hero h1{font-size:clamp(36px,10vw,44px)}
+}
