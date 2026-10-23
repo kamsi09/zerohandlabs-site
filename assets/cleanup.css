@@ -268,3 +268,21 @@ summary{-webkit-tap-highlight-color:transparent}
 }
 
 .film-front svg { flex: none; }
+
+
+/* Verification film inside the existing homepage slot. */
+.hero-film[data-film-slot] { aspect-ratio: auto; }
+.hero-film[data-film-slot] .verification-film-wrap {
+  position: static;
+  inset: auto;
+  display: block;
+  margin: 0;
+  transform: none !important;
+}
+.hero-film[data-film-slot] .verification-film {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.hero-film[data-film-slot] .film-caption { position: static; }
