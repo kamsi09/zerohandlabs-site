@@ -5,30 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Missed-Call Cost Calculator - ZeroHand Labs</title>
 <link rel="canonical" href="https://zerohandlabs.com/missed-call-calculator/">
-<meta name="description" content="Free calculator for home-service shops: what missed calls cost you per month, priced from your own call volume, job value, and close rate.">
-<!--
-  Move 3 compounding-spine asset: free missed-call cost calculator for
-  home-service contractors (third free calculator for zerohandlabs.com).
-
-  SOURCED DEFAULTS (every one is an editable input on the page):
-  - Share of callers who never call back, 85%: NextPhone 2026 analysis of
-    130,175 inbound calls across 45 contractors. Vendor data, directional,
-    sample size real. Via 8calmedia.com / getnextphone.com summary, logged
-    in ZeroHand research notes 2026-10-17.
-  - About 74% of contractor calls go unanswered (same NextPhone analysis).
-    Shown as context text only; the calculator takes missed calls directly.
-  - Worked-example cross-check: 84 missed calls/month x $450 average ticket
-    x 50% close rate x 85% never-call-back = $16,065/month lost, which is
-    about $191 of lost value per missed call (the plumbing figure cited in
-    ZeroHand demand research, Oct 2026; the HVAC mix figure cited there is
-    about $459 per missed call at higher ticket values).
-  - Recovery share default 15%: the conservative scenario used in the same
-    worked example. It is an assumption, not a promise, and is labeled so.
-
-  No input data leaves the browser. CTA target set Oct 19, 2026 to the live
-  lead-response page (https://zerohandlabs.com/lead-response/), replacing
-  the draft placeholder.
--->
+<meta name="description" content="Free planning calculator for home-service companies of any size. Explore missed-call scenarios per location using your own call volume, job value and rate assumptions.">
 <style>
   :root { --ink:#14181d; --muted:#5b6672; --line:#d9dee5; --accent:#0b6e4f; --warn:#b3540a; --bg:#f6f7f9; --card:#ffffff; }
   * { box-sizing: border-box; }
@@ -47,7 +24,7 @@
   .results { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .stat { border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
   .stat .k { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
-  .stat .v { font-size: 24px; font-weight: 700; margin-top: 4px; }
+  .stat .v { font-size: 24px; font-weight: 700; margin-top: 4px; overflow-wrap:anywhere; }
   .stat .n { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.45; }
   .big { border-color: var(--accent); }
   .loss { border-color: var(--warn); }
@@ -56,101 +33,116 @@
   .cta a { color: var(--accent); font-weight: 700; }
   .foot { font-size: 12px; color: var(--muted); line-height: 1.55; margin-top: 18px; }
   @media (max-width: 560px) { .results { grid-template-columns: 1fr; } .row { flex-direction: column; gap: 0; } }
+
+  input { min-height:48px; font-size:16px; }
+  @media (pointer:coarse), (max-width:740px) {
+    .cta a, .foot a { display:inline-flex; align-items:center; min-height:44px; }
+    .cta a { margin-top:10px; }
+  }
+.contact-footer{display:flex;flex-wrap:wrap;align-items:center;gap:4px 22px;border-top:1px solid #cdd3dd;padding-top:20px;margin-top:28px;font-size:13px;line-height:1.6;color:#46536a}.contact-footer a{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere}.contact-footer span:first-child{width:100%}
+.cta a{min-height:48px;display:inline-flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>What are missed calls costing your shop?</h1>
-  <p class="sub">Enter your own numbers. Every default below is labeled with where it came from, and every field is editable, because your call log beats any industry average. A 2026 analysis of 130,175 real contractor calls (NextPhone) found about 74% of calls to contractors go unanswered. This calculator prices the ones you miss.</p>
+  <h1>Missed-Call Calculator</h1>
+  <p class="sub">Enter your own numbers. This models a scenario from your inputs; it measures nothing about your business.</p>
 
   <div class="card">
-    <h2>1. Your call volume</h2>
-    <label for="missedWeek">Missed calls per week (unanswered, busy, or straight to voicemail)</label>
-    <input id="missedWeek" type="number" min="0" step="1" value="21">
-    <p class="hint">Not sure? Check your phone system's call log for the last 4 weeks and count the ones nobody picked up, including after-hours. The default of 21 a week (91 a month) is a starting point in the range of the worked example in our research notes, not an average for your shop.</p>
+    <h2>1. One location's call volume</h2>
+    <label for="missedWeek">Missed calls per week at this location (unanswered, busy, or straight to voicemail)</label>
+    <input id="missedWeek" type="number" min="0" step="1" required inputmode="numeric">
+    <p class="hint">Use this location's call log to find an average week. Count unanswered calls, including after-hours.</p>
 
     <div class="row">
       <div>
-        <label for="jobValue">Average job value ($)</label>
-        <input id="jobValue" type="number" min="0" step="1" value="450">
-        <p class="hint">Your average ticket for a booked job. Replace it with your own number from your invoicing.</p>
+        <label for="jobValue">Average job value at this location ($)</label>
+        <input id="jobValue" type="number" min="0" step="0.01" required inputmode="decimal">
+        <p class="hint">Use the average value of completed jobs from this location's invoicing.</p>
       </div>
       <div>
         <label for="closeRate">Close rate on answered calls (%)</label>
-        <input id="closeRate" type="number" min="0" max="100" step="1" value="50">
-        <p class="hint">Of the callers you do talk to, what share book a job? 50% is the worked-example assumption. If you do not track it, 30 to 40% is a safer guess for cold inbound calls.</p>
+        <input id="closeRate" type="number" min="0" max="100" step="0.1" required inputmode="decimal">
+        <p class="hint">Of the callers answered at this location, what share book a job? Enter your measured rate, or an assumption you want to explore.</p>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <h2>2. The part most shops miss</h2>
+    <h2>2. Your scenario assumptions</h2>
     <label for="neverBack">Callers who never call back after voicemail (%)</label>
-    <input id="neverBack" type="number" min="0" max="100" step="1" value="85">
-    <p class="hint">Industry default: 85%. Source: NextPhone 2026 analysis of 130,175 contractor calls, which found about 85% of callers who reach voicemail never call back. They call the next shop on the list instead. Lower it if your customers are mostly repeat clients who will try again.</p>
+    <input id="neverBack" type="number" min="0" max="100" step="0.1" required inputmode="decimal">
+    <p class="hint">Use your own follow-up records if available. Otherwise, enter an assumption for this scenario.</p>
 
-    <label for="recover">Share of that lost work a fast text-back could recover (%)</label>
-    <input id="recover" type="number" min="0" max="100" step="1" value="15">
-    <p class="hint">Deliberately conservative. 15% assumes most missed callers still go elsewhere and only a slice come back when they get an instant text. It is a planning assumption, not a promise.</p>
-    <p class="formula">The math: <strong>monthly revenue lost = missed calls per month x average job value x close rate x share who never call back</strong>. No hidden steps; change any input and the result changes with it.</p>
+    <label for="recover">Share of modeled missed-call value to explore recovering (%)</label>
+    <input id="recover" type="number" min="0" max="100" step="0.1" required inputmode="decimal">
+    <p class="hint">Choose the share you want to model.</p>
+    <p class="formula">The math: <strong>modeled monthly value per location = missed calls per month x average job value x close rate x share who never call back</strong>. No hidden steps; change any input and the result changes with it.</p>
   </div>
 
   <div class="card">
-    <h2>3. Your numbers</h2>
+    <h2>3. Planning estimates for this location</h2>
+    <p class="hint" id="calculation-status" role="status">Enter all five inputs to calculate a scenario. Zero is a valid entry.</p><noscript><p class="hint">Enable JavaScript to calculate. The formula above is available to work through yourself.</p></noscript>
     <div class="results">
-      <div class="stat"><div class="k">Missed calls / month</div><div class="v" id="rMissed">0</div><div class="n">Weekly missed calls x 52 / 12.</div></div>
-      <div class="stat"><div class="k">Lost value per missed call</div><div class="v" id="rPerCall">$0</div><div class="n" id="rPerCallN"></div></div>
-      <div class="stat loss"><div class="k">Estimated revenue lost / month</div><div class="v" id="rLost">$0</div><div class="n">Booked jobs that never happened because nobody answered and the caller never tried again.</div></div>
-      <div class="stat"><div class="k">Estimated revenue lost / year</div><div class="v" id="rLostYear">$0</div><div class="n">Monthly figure x 12, at the same call volume.</div></div>
-      <div class="stat big"><div class="k">Worth recovering at your recovery share</div><div class="v" id="rRecover">$0</div><div class="n" id="rRecoverN"></div></div>
-      <div class="stat"><div class="k">Recovery value / year</div><div class="v" id="rRecoverYear">$0</div><div class="n">The monthly recovery figure x 12.</div></div>
+      <div class="stat"><div class="k">Missed calls / month / location</div><div class="v" id="rMissed">Not set</div></div>
+      <div class="stat"><div class="k">Modeled value per missed call</div><div class="v" id="rPerCall">Not set</div></div>
+      <div class="stat loss"><div class="k">Modeled value / month / location</div><div class="v" id="rLost">Not set</div></div>
+      <div class="stat"><div class="k">Modeled value / year / location</div><div class="v" id="rLostYear">Not set</div></div>
+      <div class="stat big"><div class="k">Recovery scenario / month / location</div><div class="v" id="rRecover">Not set</div></div>
+      <div class="stat"><div class="k">Recovery scenario / year / location</div><div class="v" id="rRecoverYear">Not set</div></div>
     </div>
   </div>
 
   <div class="card cta">
-    <strong>The fix is not a bigger ad budget. It is answering in seconds.</strong> ZeroHand's lead-response service watches your calls and forms around the clock: a missed call gets a text back in under 60 seconds, the conversation qualifies the job, and booked work lands on your calendar. Your current software stays exactly where it is. <a href="https://zerohandlabs.com/lead-response/">See how the lead-response service works</a>
+    <strong>Missed calls get a text back.</strong> ZeroHand sets up missed-call text-back and estimate follow-up for home-service companies of any size, inside the software you already run. If your agents are live across 5 or more locations, start with verification. <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3PGa8wrhAbgSjz-JFaq1X0ORvXc_pzHK1yXup2iYUM9atjEvHvPbUZ-V0fXApypSvmlKT7-HFF">Book a pilot-fit call.</a><p>We reply within one business hour, Mon-Fri 8-6 CT.</p>
   </div>
 
-  <p class="foot">Sources for the labeled defaults: NextPhone 2026 analysis of 130,175 inbound calls across 45 contractors (about 74% of contractor calls unanswered; about 85% of voicemail callers never call back), summarized at 8calmedia.com and getnextphone.com. Worked-example cross-check from ZeroHand research, October 2026: at 84 missed calls a month, a $450 average ticket, a 50% close rate, and 85% never calling back, the loss is $16,065 a month, about $191 per missed call; at HVAC ticket values the same math gives about $459 per missed call. Vendor call data is directional, and your own call log and invoicing always win over any default on this page. Calculations run in your browser. Your input values are not sent to ZeroHand Labs or the usage counter. The counter receives a usage event and normal connection data, such as your IP address. <a href="https://zerohandlabs.com/privacy-policy/#tools">Privacy details</a>.</p>
+  <p class="foot">Built from your entries only. Nothing here is a measured loss or a promised result. <a href="/privacy-policy/#tools">Privacy details</a>.</p>
+<footer class="contact-footer"><span>ZeroHand Labs · Austin, TX</span><a href="mailto:sam@getzerohandlabs.com">sam@getzerohandlabs.com</a><a href="tel:+15128147093">+1 (512) 814-7093</a><span>Mon-Fri 8-6 CT</span><a href="/privacy-policy/">Privacy policy</a><a href="/terms/">Terms</a></footer>
 </div>
 
 <script>
   function $(id) { return document.getElementById(id); }
-  function num(id) { var v = parseFloat($(id).value); return isNaN(v) || v < 0 ? 0 : v; }
-  function pct(id) { var v = num(id); return v > 100 ? 1 : v / 100; }
-  function money(v) {
-    return "$" + Math.round(v).toLocaleString("en-US");
-  }
+  function money(v) { return "$" + Math.round(v).toLocaleString("en-US"); }
+  var inputIds = ["missedWeek", "jobValue", "closeRate", "neverBack", "recover"];
+  var resultIds = ["rMissed", "rPerCall", "rLost", "rLostYear", "rRecover", "rRecoverYear"];
 
   function calc() {
-    var missedWeek = num("missedWeek");
-    var jobValue = num("jobValue");
-    var closeRate = pct("closeRate");
-    var neverBack = pct("neverBack");
-    var recover = pct("recover");
+    var valid = inputIds.every(function (id) {
+      var input = $(id);
+      return input.value.trim() !== "" && input.checkValidity() && Number.isFinite(Number(input.value));
+    });
+    if (!valid) {
+      resultIds.forEach(function (id) { $(id).textContent = "Not set"; });
 
-    var missedMonth = missedWeek * 52 / 12;
-    var perCall = jobValue * closeRate * neverBack;
-    var lost = missedMonth * perCall;
-    var lostYear = lost * 12;
-    var recoverVal = lost * recover;
-    var recoverYear = recoverVal * 12;
 
+      $("calculation-status").textContent = "Enter all five valid inputs to calculate. Rates must be between 0 and 100. Zero is a valid entry.";
+      return;
+    }
+    var missedMonth = Number($("missedWeek").value) * 52 / 12;
+    var perCall = Number($("jobValue").value) * Number($("closeRate").value) / 100 * Number($("neverBack").value) / 100;
+    var modeled = missedMonth * perCall;
+    var recoveryShare = Number($("recover").value) / 100;
+    var recoverVal = modeled * recoveryShare;
+    if (![missedMonth, perCall, modeled, modeled * 12, recoverVal, recoverVal * 12].every(Number.isFinite)) {
+      resultIds.forEach(function (id) { $(id).textContent = "Not set"; });
+
+
+      $("calculation-status").textContent = "These inputs exceed the calculator's range. Enter smaller values.";
+      return;
+    }
     $("rMissed").textContent = Math.round(missedMonth).toLocaleString("en-US");
     $("rPerCall").textContent = money(perCall);
-    $("rPerCallN").textContent = "Job value x close rate x never-call-back share, per missed call.";
-    $("rLost").textContent = money(lost);
-    $("rLostYear").textContent = money(lostYear);
-    $("rRecover").textContent = money(recoverVal);
-    $("rRecoverN").textContent = "At a " + Math.round(recover * 100) + "% recovery share of the monthly loss. Conservative on purpose.";
-    $("rRecoverYear").textContent = money(recoverYear);
-  }
 
-  (function init() {
-    var ids = ["missedWeek", "jobValue", "closeRate", "neverBack", "recover"], i;
-    for (i = 0; i < ids.length; i++) { $(ids[i]).addEventListener("input", calc); }
-    calc();
-  })();
+    $("rLost").textContent = money(modeled);
+    $("rLostYear").textContent = money(modeled * 12);
+    $("rRecover").textContent = money(recoverVal);
+
+    $("rRecoverYear").textContent = money(recoverVal * 12);
+    $("calculation-status").textContent = "Scenario calculated for this location.";
+  }
+  inputIds.forEach(function (id) { $(id).addEventListener("input", calc); });
+  calc();
 </script>
 <script>
   // Anonymous session counter (sprint measurement, added Oct 19, 2026):
