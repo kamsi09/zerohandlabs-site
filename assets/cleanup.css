@@ -246,3 +246,23 @@ summary{-webkit-tap-highlight-color:transparent}
   .cleanup-home .lab-intro h1{font-size:clamp(32px,9.5vw,44px)}
   .cleanup-lead .lead-hero h1{font-size:clamp(36px,10vw,44px)}
 }
+
+
+.install-film-wrap {
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 var(--pad) 80px;
+}
+.install-film {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 7px;
+  box-shadow: 0 30px 80px -20px #0008;
+}
+@media (max-width: 860px) {
+  .install-film-wrap { padding-bottom: 64px; }
+}
+@media (max-width: 740px) {
+  .install-film { box-shadow: none; }
+}

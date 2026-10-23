@@ -1,0 +1,62 @@
+1
+00:00:00,160 --> 00:00:02,440
+At 7:42, a customer calls.
+
+2
+00:00:02,860 --> 00:00:03,724
+The shop is closed.
+
+3
+00:00:04,260 --> 00:00:06,020
+The phone rings. Nobody
+answers.
+
+4
+00:00:06,580 --> 00:00:08,300
+ZeroHand catches that call.
+
+5
+00:00:08,660 --> 00:00:10,020
+It texts the customer back,
+
+6
+00:00:10,140 --> 00:00:11,420
+asks what they need,
+
+7
+00:00:11,560 --> 00:00:12,980
+and helps get the job booked.
+
+8
+00:00:13,420 --> 00:00:15,300
+Estimate follow-up stays within
+
+9
+00:00:15,320 --> 00:00:16,720
+the rules you approve.
+
+10
+00:00:17,040 --> 00:00:19,340
+And every Monday, one receipt
+shows
+
+11
+00:00:19,360 --> 00:00:21,180
+the replies, bookings,
+
+12
+00:00:21,320 --> 00:00:23,400
+and anything that still needs
+you.
+
+13
+00:00:23,660 --> 00:00:24,660
+Grow the shop.
+
+14
+00:00:25,160 --> 00:00:26,380
+Not the back office.
+
+15
+00:00:27,040 --> 00:00:28,060
+ZeroHand Labs.
