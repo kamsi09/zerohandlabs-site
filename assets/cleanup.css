@@ -348,3 +348,16 @@ summary{-webkit-tap-highlight-color:transparent}
   display: inline-flex;
   align-items: center;
 }
+
+/* Two starting points, using the existing type, spacing and color tokens. */
+.starting-routes .system-line { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.starting-routes .system-line > div { display: flex; flex-direction: column; align-items: flex-start; }
+.starting-routes .text-link { margin-top: 24px; }
+@media (max-width: 740px) {
+  .starting-routes .system-line { grid-template-columns: 1fr; }
+  .starting-routes .system-line > div { gap: 0; }
+  .starting-routes .system-line h3 { margin-bottom: 18px; }
+}
+
+/* Keep the outcome prominent and the approved explanation at body scale. */
+.cleanup-home .hero-support { display: block; margin-top: 20px; font-size: 1rem; line-height: 1.65; letter-spacing: 0; }
