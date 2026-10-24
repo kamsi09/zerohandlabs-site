@@ -288,11 +288,11 @@ summary{-webkit-tap-highlight-color:transparent}
 }
 .hero-film[data-film-slot] .film-caption { position: static; }
 
-/* A real tap target over the poster, clear of the native controls. */
+/* One poster action, followed by native controls during playback. */
 .hero-film[data-film-slot] .verification-film-stage { position: relative; }
 .hero-film[data-film-slot] .verification-film-play {
   position: absolute;
-  inset: 0 0 48px;
+  inset: 0;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -330,6 +330,7 @@ summary{-webkit-tap-highlight-color:transparent}
 }
 .hero-film[data-film-slot] .verification-film-play:disabled { cursor: progress; }
 .hero-film[data-film-slot] .verification-film-play[hidden],
+.hero-film[data-film-slot] .verification-film-direct[hidden],
 .hero-film[data-film-slot] .verification-film-status[hidden] { display: none; }
 .hero-film[data-film-slot] .verification-film-status {
   padding: 12px 18px;

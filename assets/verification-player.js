@@ -6,7 +6,8 @@
   const button = slot.querySelector('.verification-film-play');
   const label = slot.querySelector('.verification-film-play-label');
   const status = slot.querySelector('.verification-film-status');
-  if (!video || !button || !label || !status) return;
+  const direct = slot.querySelector('.verification-film-direct');
+  if (!video || !button || !label || !status || !direct) return;
 
   let loadingTimer = null;
   const clearLoading = () => {
@@ -16,7 +17,9 @@
   };
   const retry = () => {
     clearLoading();
+    video.controls = false;
     button.hidden = false;
+    direct.hidden = false;
     button.setAttribute('aria-label', 'Try playing the ZeroHand verification film again');
     label.textContent = 'Try again';
     status.textContent = 'Playback did not start. Try again, or use Open film below.';
@@ -40,17 +43,24 @@
   });
   video.addEventListener('playing', () => {
     clearLoading();
+    video.controls = true;
     button.hidden = true;
+    direct.hidden = true;
     status.hidden = true;
   });
   video.addEventListener('ended', () => {
     clearLoading();
+    video.controls = false;
     button.hidden = false;
+    direct.hidden = true;
+    status.hidden = true;
     button.setAttribute('aria-label', 'Replay the ZeroHand verification film');
     label.textContent = 'Replay film';
   });
   video.addEventListener('error', retry);
   const source = video.querySelector('source');
   if (source) source.addEventListener('error', retry);
+  video.controls = false;
+  direct.hidden = true;
   button.hidden = false;
 })();
