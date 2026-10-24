@@ -305,6 +305,7 @@ summary{-webkit-tap-highlight-color:transparent}
   border-radius: 7px;
   background: transparent;
   color: #181711;
+  text-decoration: none;
   cursor: pointer;
   touch-action: manipulation;
 }
@@ -328,7 +329,7 @@ summary{-webkit-tap-highlight-color:transparent}
   outline: 2px solid #d1f3b0;
   outline-offset: -5px;
 }
-.hero-film[data-film-slot] .verification-film-play:disabled { cursor: progress; }
+.hero-film[data-film-slot] .verification-film-play[aria-disabled="true"] { cursor: progress; }
 .hero-film[data-film-slot] .verification-film-play[hidden],
 .hero-film[data-film-slot] .verification-film-direct[hidden],
 .hero-film[data-film-slot] .verification-film-status[hidden] { display: none; }

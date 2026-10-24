@@ -8,12 +8,13 @@
   const status = slot.querySelector('.verification-film-status');
   const direct = slot.querySelector('.verification-film-direct');
   if (!video || !button || !label || !status || !direct) return;
+  const inlinePlayback = matchMedia('(min-width: 861px) and (hover: hover) and (pointer: fine)');
 
   let loadingTimer = null;
   const clearLoading = () => {
     clearTimeout(loadingTimer);
     loadingTimer = null;
-    button.disabled = false;
+    button.setAttribute('aria-disabled', 'false');
   };
   const retry = () => {
     clearLoading();
@@ -26,15 +27,20 @@
     status.hidden = false;
   };
 
-  button.addEventListener('click', () => {
+  button.addEventListener('click', (event) => {
+    // On phones and touch devices, follow the actual media link. Do not start
+    // an inline player, timer, or asynchronous navigation before that handoff.
+    if (!inlinePlayback.matches || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    if (button.getAttribute('aria-disabled') === 'true') return;
     clearLoading();
     status.hidden = true;
-    button.disabled = true;
+    button.setAttribute('aria-disabled', 'true');
     label.textContent = 'Loading film';
     if (video.error) video.load();
     loadingTimer = setTimeout(retry, 12000);
     try {
-      // Call play in the click handler itself, preserving the iOS user gesture.
+      // Desktop enhancement keeps play in the original click gesture.
       const started = video.play();
       if (started && typeof started.catch === 'function') started.catch(retry);
     } catch (_) {
