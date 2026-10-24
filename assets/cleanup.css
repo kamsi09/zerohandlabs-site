@@ -287,3 +287,62 @@ summary{-webkit-tap-highlight-color:transparent}
   object-fit: contain;
 }
 .hero-film[data-film-slot] .film-caption { position: static; }
+
+/* A real tap target over the poster, clear of the native controls. */
+.hero-film[data-film-slot] .verification-film-stage { position: relative; }
+.hero-film[data-film-slot] .verification-film-play {
+  position: absolute;
+  inset: 0 0 48px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #181711;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.hero-film[data-film-slot] .verification-film-play svg {
+  flex: none;
+  width: 58px;
+  height: 58px;
+  padding: 17px;
+  border-radius: 50%;
+  background: #eee8dc;
+  box-shadow: 0 4px 22px #0005;
+  fill: currentColor;
+}
+.hero-film[data-film-slot] .verification-film-play-label {
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: #eee8dc;
+  font: 12px/1.4 var(--font);
+}
+.hero-film[data-film-slot] .verification-film-play:focus-visible {
+  outline: 2px solid #d1f3b0;
+  outline-offset: -5px;
+}
+.hero-film[data-film-slot] .verification-film-play:disabled { cursor: progress; }
+.hero-film[data-film-slot] .verification-film-play[hidden],
+.hero-film[data-film-slot] .verification-film-status[hidden] { display: none; }
+.hero-film[data-film-slot] .verification-film-status {
+  padding: 12px 18px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #eee8dc;
+}
+.hero-film[data-film-slot] .film-caption { gap: 12px; align-items: center; }
+.hero-film[data-film-slot] .verification-film-direct {
+  color: #d1f3b0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+}
