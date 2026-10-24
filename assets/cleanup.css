@@ -278,6 +278,7 @@ summary{-webkit-tap-highlight-color:transparent}
   display: block;
   margin: 0;
   transform: none !important;
+  perspective: none;
 }
 .hero-film[data-film-slot] .verification-film {
   display: block;
